@@ -1,1 +1,92 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Sora:wght@400;500;600;700;800&family=Urbanist:wght@400;500;600;700&family=Cairo:wght@400;500;600;700;800&display=swap');
+
+/* ---------------------------------------------------------------------------
+   Theme tokens. AppComponent/ThemeService sets data-theme="dark" | "light" on
+   <html>. Component styles reference these variables and inherit the values
+   through the normal CSS cascade (custom properties pass through Angular's
+   emulated view encapsulation without any extra wiring).
+   --------------------------------------------------------------------------- */
+:root,
+html[data-theme='dark'] {
+  --bg: #0D0D0D;
+  --bg-alt: #1E2A3A;
+  --surface: #1E2A3A;
+  --surface-alt: rgba(255, 255, 255, 0.04);
+  --surface-border: rgba(255, 255, 255, 0.10);
+  --text: #F5F0EB;
+  --text-muted: rgba(245, 240, 235, 0.65);
+  --card-bg: #F5F0EB;
+
+  --sandy: #FFA04A;
+  --apricot: #FFC97A;
+  --cyan: #4ECDC4;
+  --indigo: #3B4A6B;
+  --lavender: #8E7DF2;
+  --coral: #FF8C7A;
+  --slate: #667085;
+  --icewhite: #F5F7FA;
+}
+
+html[data-theme='light'] {
+  --bg: #F5F7FA;
+  --bg-alt: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-alt: rgba(30, 42, 58, 0.03);
+  --surface-border: rgba(30, 42, 58, 0.10);
+  --text: #0D0D0D;
+  --text-muted: #4b5563;
+  --card-bg: #FFFFFF;
+
+  --sandy: #FF8F2E;
+  --apricot: #E8A94E;
+  --cyan: #1FA79C;
+  --indigo: #3B4A6B;
+  --lavender: #6E5AD1;
+  --coral: #E8654F;
+  --slate: #667085;
+  --icewhite: #F5F7FA;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Urbanist', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Arabic reads better in a face with proper Arabic glyph support than Urbanist,
+   which has none — swap the body/display faces when dir="rtl". */
+html[dir='rtl'] body {
+  font-family: 'Cairo', sans-serif;
+}
+html[dir='rtl'] h1,
+html[dir='rtl'] h2,
+html[dir='rtl'] h3,
+html[dir='rtl'] h4 {
+  font-family: 'Cairo', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
