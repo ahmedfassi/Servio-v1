@@ -6,6 +6,7 @@
       <a href="#about">{{ 'nav.about' | translate }}</a>
       <a href="#features">{{ 'nav.features' | translate }}</a>
       <a href="#flow">{{ 'nav.flow' | translate }}</a>
+      <a href="#contact">{{ 'nav.contact' | translate }}</a>
     </div>
 
     <div class="nav-actions">
@@ -31,9 +32,36 @@
         {{ 'lang.toggle' | translate }}
       </button>
 
-      <a href="#cta" class="nav-cta">{{ 'nav.cta' | translate }}</a>
+      <a href="#contact" class="nav-cta">{{ 'nav.cta' | translate }}</a>
+
+      <button
+        type="button"
+        class="menu-toggle"
+        (click)="toggleMobileMenu()"
+        [attr.aria-expanded]="mobileMenuOpen()"
+        aria-label="Menu"
+      >
+        @if (mobileMenuOpen()) {
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 6l12 12M18 6L6 18"/>
+          </svg>
+        } @else {
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        }
+      </button>
     </div>
   </nav>
+
+  @if (mobileMenuOpen()) {
+    <div class="mobile-menu">
+      <a href="#about" (click)="closeMobileMenu()">{{ 'nav.about' | translate }}</a>
+      <a href="#features" (click)="closeMobileMenu()">{{ 'nav.features' | translate }}</a>
+      <a href="#flow" (click)="closeMobileMenu()">{{ 'nav.flow' | translate }}</a>
+      <a href="#contact" (click)="closeMobileMenu()">{{ 'nav.contact' | translate }}</a>
+    </div>
+  }
 </header>
 
 <section class="hero">
@@ -46,7 +74,7 @@
       </h1>
       <p class="lead">{{ 'hero.lead' | translate }}</p>
       <div class="hero-actions">
-        <a href="#cta" class="btn-primary">{{ 'hero.ctaPrimary' | translate }}</a>
+        <a href="#contact" class="btn-primary">{{ 'hero.ctaPrimary' | translate }}</a>
         <a href="#features" class="btn-ghost">{{ 'hero.ctaSecondary' | translate }}</a>
       </div>
       <div class="hero-stats">
@@ -155,13 +183,103 @@
   </div>
 </section>
 
-<section class="cta" id="cta">
+<section class="contact" id="contact">
   <div class="wrap">
-    <h2>{{ 'cta.title' | translate }}</h2>
-    <p class="section-lead">{{ 'cta.lead' | translate }}</p>
-    <div class="cta-actions">
-      <a href="#" class="btn-primary">{{ 'cta.primary' | translate }}</a>
-      <a href="#about" class="btn-ghost">{{ 'cta.secondary' | translate }}</a>
+    <div class="contact-head">
+      <div class="section-tag">{{ 'contact.tag' | translate }}</div>
+      <h2>{{ 'contact.title' | translate }}</h2>
+      <p class="section-lead">{{ 'contact.lead' | translate }}</p>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-card-bar"></div>
+
+      <div class="contact-quickinfo">
+        <a href="mailto:{{ 'contact.email' | translate }}" class="quickinfo-item">
+          <span class="quickinfo-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 5h16v14H4z"/><path d="M4 6l8 7 8-7"/>
+            </svg>
+          </span>
+          {{ 'contact.email' | translate }}
+        </a>
+        <a href="tel:{{ 'contact.phone' | translate }}" class="quickinfo-item">
+          <span class="quickinfo-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 5c0 8.5 6.5 15 15 15l3-3-5-4-2 2c-2-1-4-3-5-5l2-2-4-5-3 2z"/>
+            </svg>
+          </span>
+          {{ 'contact.phone' | translate }}
+        </a>
+        <span class="quickinfo-item static">
+          <span class="quickinfo-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/>
+            </svg>
+          </span>
+          {{ 'contact.address' | translate }}
+        </span>
+      </div>
+
+      <form class="contact-form" action="mailto:hello@servio.app" method="post" enctype="text/plain">
+        <div class="form-row">
+          <div class="field">
+            <input type="text" name="firstName" id="cf-first" placeholder=" " required />
+            <label for="cf-first">{{ 'contact.firstName' | translate }}</label>
+          </div>
+          <div class="field">
+            <input type="text" name="lastName" id="cf-last" placeholder=" " required />
+            <label for="cf-last">{{ 'contact.lastName' | translate }}</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <input type="email" name="email" id="cf-email" placeholder=" " required />
+            <label for="cf-email">{{ 'contact.formEmail' | translate }}</label>
+          </div>
+          <div class="field">
+            <input type="tel" name="phone" id="cf-phone" placeholder=" " />
+            <label for="cf-phone">{{ 'contact.phoneLabel' | translate }}</label>
+          </div>
+        </div>
+
+        <div class="subject-block">
+          <span class="subject-title">{{ 'contact.subjectLabel' | translate }}</span>
+          <div class="subject-pills">
+            <label class="pill-option">
+              <input type="radio" name="subject" value="partnership" checked />
+              <span>{{ 'contact.subjectPartnership' | translate }}</span>
+            </label>
+            <label class="pill-option">
+              <input type="radio" name="subject" value="business" />
+              <span>{{ 'contact.subjectBusiness' | translate }}</span>
+            </label>
+            <label class="pill-option">
+              <input type="radio" name="subject" value="userInquiry" />
+              <span>{{ 'contact.subjectUserInquiry' | translate }}</span>
+            </label>
+            <label class="pill-option">
+              <input type="radio" name="subject" value="appInquiry" />
+              <span>{{ 'contact.subjectAppInquiry' | translate }}</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <textarea name="message" id="cf-message" rows="3" placeholder=" " required></textarea>
+          <label for="cf-message">{{ 'contact.formMessage' | translate }}</label>
+        </div>
+
+        <div class="form-submit-row">
+          <button type="submit" class="btn-send">
+            {{ 'contact.formSend' | translate }}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </section>
@@ -180,13 +298,13 @@
         </div>
         <div class="footer-col">
           <h5>{{ 'footer.company' | translate }}</h5>
-          <a href="#">{{ 'footer.contact' | translate }}</a>
+          <a href="#contact">{{ 'footer.contact' | translate }}</a>
         </div>
       </div>
     </div>
 
-    <div class="license">
-      <a href="/policies"><strong>Privacy Policy</strong></a>
+    <div class="privacy">
+      <a href="/policies"><strong>{{ 'footer.privacy' | translate }}</strong></a>
     </div>
 
     <div class="footer-bottom">

@@ -46,6 +46,16 @@ export class Home implements OnInit, OnDestroy {
   readonly tables = signal(this.buildInitialTables());
   private intervalId?: ReturnType<typeof setInterval>;
   private reduceMotion = false;
+  // Mobile navbar state
+  readonly mobileMenuOpen = signal(false);
+
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen.update((v) => !v);
+  }
+
+  closeMobileMenu(): void {
+    this.mobileMenuOpen.set(false);
+  }
 
   ngOnInit(): void {
     if (!this.isBrowser) return; // no window/setInterval on the SSR server pass
@@ -79,4 +89,5 @@ export class Home implements OnInit, OnDestroy {
       current.map((t, i) => (i === idx ? { ...t, status: next } : t))
     );
   }
+  
 }

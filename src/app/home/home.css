@@ -337,7 +337,7 @@ section {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--indigo);
+  color: var(--text);
   margin-bottom: 14px;
 }
 
@@ -378,7 +378,7 @@ h2 {
 .pill {
   font-size: 13.5px;
   font-weight: 600;
-  color: var(--indigo);
+  color: var(--text);
   background: var(--surface);
   border: 1px solid var(--surface-border);
   padding: 9px 16px;
@@ -489,10 +489,11 @@ h2 {
 
 .ticket {
   margin-top: 56px;
-  background: var(--card-bg);
-  color: #0D0D0D;
+  background: var(--surface);
+  color: var(--text);
   border-radius: 18px;
   padding: 8px;
+  border: 1px solid var(--surface-border);
 }
 
 .ticket-inner {
@@ -520,7 +521,7 @@ h2 {
   font-family: 'Sora', sans-serif;
   font-size: 12px;
   font-weight: 700;
-  color: var(--slate);
+  color: var(--text-muted);
   margin-bottom: 14px;
   letter-spacing: 1px;
 }
@@ -533,28 +534,9 @@ h2 {
 
 .ticket-step p {
   font-size: 13px;
-  color: var(--slate);
+  color: var(--text-muted);
 }
 
-/* ---------- CTA ---------- */
-.cta {
-  background: var(--sandy);
-  text-align: center;
-}
-
-.cta h2 { color: #0D0D0D; }
-.cta .section-lead { color: rgba(13, 13, 13, 0.65); margin: 0 auto 34px; }
-.cta .btn-primary { background: #0D0D0D; color: var(--icewhite); }
-.cta .btn-primary:hover { box-shadow: 0 12px 26px rgba(13, 13, 13, 0.28); }
-.cta .btn-ghost { color: #0D0D0D; border-color: rgba(13, 13, 13, 0.3); }
-.cta .btn-ghost:hover { background: rgba(13, 13, 13, 0.06); border-color: #0D0D0D; }
-
-.cta-actions {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
 
 /* ---------- FOOTER ---------- */
 footer {
@@ -601,7 +583,7 @@ footer {
   color: var(--sandy);
 }
 
-.license {
+.privacy {
   padding-top: 28px;
   font-size: 11.5px;
   line-height: 1.7;
@@ -610,11 +592,11 @@ footer {
   opacity: 0.7;
 }
 
-.license strong {
+.privacy strong {
   color: var(--text-muted);
   display: block;
   margin-bottom: 8px;
-  font-size: 11.5px;
+  font-size: 16px;
   opacity: 1;
 }
 
@@ -645,4 +627,294 @@ footer {
   .ticket-step::after { display: none !important; }
   .hero-stats { gap: 24px; flex-wrap: wrap; }
   section { padding: 72px 0; }
+}
+/* ---------- MOBILE MENU ---------- */
+.menu-toggle {
+  display: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--surface-border);
+  background: var(--surface-alt);
+  color: var(--text);
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease;
+}
+
+.menu-toggle:hover {
+  border-color: var(--sandy);
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 32px 20px;
+  border-top: 1px solid var(--surface-border);
+  background: var(--bg);
+}
+
+.mobile-menu a {
+  padding: 12px 4px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.mobile-menu a:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu .mobile-cta {
+  margin-top: 10px;
+  text-align: center;
+  background: var(--sandy);
+  color: #0D0D0D;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 12px;
+  border-bottom: none;
+}
+
+/* ---------- CONTACT ---------- */
+.contact {
+  background: var(--sandy);
+  padding: 110px 0;
+}
+
+.contact-head {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 48px;
+}
+
+.contact-head .section-tag {
+  color: #0D0D0D;
+  opacity: 0.55;
+}
+
+.contact-head h2 {
+  color: #0D0D0D;
+}
+
+.contact-head .section-lead {
+  color: rgba(13, 13, 13, 0.65);
+  margin: 0 auto;
+}
+
+.contact-card {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 24px;
+  padding: 48px 48px 40px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.contact-card-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--apricot), var(--sandy), var(--coral));
+}
+
+.contact-quickinfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 34px;
+}
+
+.quickinfo-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface-alt);
+  border: 1px solid var(--surface-border);
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.quickinfo-item:not(.static):hover {
+  background: color-mix(in srgb, var(--text) 8%, var(--surface-alt));
+  transform: translateY(-1px);
+}
+
+.quickinfo-icon {
+  display: flex;
+  color: var(--cyan);
+}
+
+/* Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.field {
+  position: relative;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 14.5px;
+  color: var(--text);
+  background: var(--surface-alt);
+  border: 1.5px solid var(--surface-border);
+  border-radius: 12px;
+  padding: 20px 16px 8px;
+  text-align: start;
+  resize: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.field textarea {
+  min-height: 76px;
+  padding-top: 22px;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+}
+
+.field label {
+  position: absolute;
+  inset-inline-start: 16px;
+  top: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  pointer-events: none;
+  transition: top 0.15s ease, font-size 0.15s ease, color 0.15s ease;
+}
+
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label,
+.field textarea:focus + label,
+.field textarea:not(:placeholder-shown) + label {
+  top: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+/* Subject pills */
+.subject-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.subject-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.subject-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pill-option {
+  position: relative;
+  cursor: pointer;
+}
+
+.pill-option input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.pill-option span {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface-alt);
+  border: 1.5px solid var(--surface-border);
+  padding: 9px 16px;
+  border-radius: 999px;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.pill-option input:checked + span {
+  background: var(--indigo);
+  border-color: var(--indigo);
+  color: var(--icewhite);
+}
+
+.pill-option:hover span {
+  border-color: var(--cyan);
+}
+
+/* Submit */
+.form-submit-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-send {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--sandy);
+  color: #0D0D0D;
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 15px 30px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, gap 0.2s ease;
+}
+
+.btn-send:hover {
+  gap: 14px;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(255, 160, 74, 0.35);
+}
+
+/* ---------- RESPONSIVE CONTACT ---------- */
+@media (max-width: 640px) {
+  .contact { padding: 76px 0; }
+  .contact-card { padding: 36px 24px 30px; border-radius: 20px; }
+  .form-row { grid-template-columns: 1fr; gap: 20px; }
+  .contact-quickinfo { gap: 8px; }
+}
+
+/* ---------- RESPONSIVE NAV OVERRIDES ---------- */
+@media (max-width: 900px) {
+  .menu-toggle { display: flex; }
+  .mobile-menu { display: flex; }
+  .nav-actions .nav-cta { display: none; }
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
 }
