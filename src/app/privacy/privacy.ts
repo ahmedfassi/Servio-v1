@@ -20,4 +20,15 @@ export class Privacy {
   showTab(tab: LegalTab): void {
     this.activeTab.set(tab);
   }
+
+  // Mobile navbar state
+  readonly mobileMenuOpen = signal(false);
+
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen.update((v) => !v);
+  }
+
+  closeMobileMenu(): void {
+    this.mobileMenuOpen.set(false);
+  }
 }
