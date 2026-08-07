@@ -66,7 +66,7 @@
 
 <section class="hero">
   <div class="wrap hero-grid">
-    <div appScrollReveal>
+    <div appScrollReveal [revealVariant]="'left'">
       <div class="eyebrow">{{ 'hero.eyebrow' | translate }}</div>
       <h1>
         {{ 'hero.title1' | translate }}<br>
@@ -84,7 +84,7 @@
       </div>
     </div>
 
-    <div class="floor-card" appScrollReveal [revealDelay]="150">
+    <div class="floor-card" appScrollReveal [revealDelay]="150" [revealVariant]="'right'">
       <div class="floor-head">
         <h3>{{ 'floor.title' | translate }}</h3>
         <div class="live-tag"><span class="live-dot"></span>{{ 'floor.live' | translate }}</div>
@@ -108,7 +108,7 @@
 
 <section class="about" id="about">
   <div class="wrap about-grid">
-    <div appScrollReveal>
+    <div appScrollReveal [revealVariant]="'left'">
       <div class="section-tag">{{ 'about.tag' | translate }}</div>
       <h2>{{ 'about.title' | translate }}</h2>
       <p class="section-lead">{{ 'about.lead' | translate }}</p>
@@ -124,7 +124,7 @@
       </div>
     </div>
 
-    <div class="about-panel" appScrollReveal [revealDelay]="150">
+    <div class="about-panel" appScrollReveal [revealDelay]="150" [revealVariant]="'zoom'">
       <div class="step">
         <div class="step-mark">1</div>
         <div><h4>{{ 'about.step1Title' | translate }}</h4><p>{{ 'about.step1Desc' | translate }}</p></div>
@@ -149,7 +149,7 @@
 
     <div class="feature-grid">
       @for (f of features; track f.key; let i = $index) {
-        <div class="feature-card" appScrollReveal [revealDelay]="i * 80">
+        <div class="feature-card" appScrollReveal [revealDelay]="i * 80" [revealVariant]="'zoom'">
           <div class="feature-icon" [style.background]="f.color">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path [attr.d]="f.icon"/>
@@ -172,7 +172,7 @@
     <div class="ticket">
       <div class="ticket-inner">
         @for (s of flowSteps; track s.key; let i = $index) {
-          <div class="ticket-step" appScrollReveal [revealDelay]="i * 100">
+          <div class="ticket-step" appScrollReveal [revealDelay]="i * 100" [revealVariant]="'up'">
             <div class="num">{{ (i + 1) < 10 ? '0' + (i + 1) : (i + 1) }}</div>
             <h4>{{ 'flow.' + s.key + 'Title' | translate }}</h4>
             <p>{{ 'flow.' + s.key + 'Desc' | translate }}</p>
@@ -191,7 +191,7 @@
       <p class="section-lead">{{ 'contact.lead' | translate }}</p>
     </div>
 
-    <div class="contact-card" appScrollReveal [revealDelay]="150">
+    <div class="contact-card" appScrollReveal [revealDelay]="150" [revealVariant]="'zoom'">
       <div class="contact-card-bar"></div>
 
       <div class="contact-quickinfo">
