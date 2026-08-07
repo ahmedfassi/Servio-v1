@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { ThemeService } from '../services/theme.service';
 import { I18nService } from '../services/i18n.service';
 import { TranslatePipe } from '../pipes/translate.pipe';
+import { ScrollRevealDirective } from '../scroll-reveal';
 
 type TableStatus = 'available' | 'occupied' | 'reserved' | 'checkout';
 
@@ -18,10 +19,11 @@ interface FlowStepDef {
 
 @Component({
   selector: 'app-root',
-  imports: [TranslatePipe],
+  imports: [TranslatePipe, ScrollRevealDirective],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
+
 export class Home implements OnInit, OnDestroy {
   theme = inject(ThemeService);
   i18n = inject(I18nService);

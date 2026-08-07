@@ -94,10 +94,7 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     'footer.contact': 'Contact',
     'footer.careers': 'Careers',
     'footer.terms': 'Terms',
-    'footer.privacy': 'Privacy',
-    'footer.license': 'License',
-    'license.title': 'License',
-    'license.text': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    'footer.privacy': 'Privacy Policy',
     'footer.copy': '© 2026 Serv.io. All rights reserved.',
     'footer.tagline': 'Made for restaurants & cafés.',
 
