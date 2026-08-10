@@ -3,10 +3,10 @@
     <a href=""><div class="logo">Serv<span>.io</span></div></a>
 
     <div class="nav-links">
-      <a href="#about">{{ 'nav.about' | translate }}</a>
-      <a href="#features">{{ 'nav.features' | translate }}</a>
-      <a href="#flow">{{ 'nav.flow' | translate }}</a>
-      <a href="#contact">{{ 'nav.contact' | translate }}</a>
+      <a href="#about" (click)="scrollToSection('about', $event)">{{ 'nav.about' | translate }}</a>
+      <a href="#features" (click)="scrollToSection('features', $event)">{{ 'nav.features' | translate }}</a>
+      <a href="#flow" (click)="scrollToSection('flow', $event)">{{ 'nav.flow' | translate }}</a>
+      <a href="#contact" (click)="scrollToSection('contact', $event)">{{ 'nav.contact' | translate }}</a>
     </div>
 
     <div class="nav-actions">
@@ -32,7 +32,7 @@
         {{ 'lang.toggle' | translate }}
       </button>
 
-      <a href="#contact" class="nav-cta">{{ 'nav.cta' | translate }}</a>
+      <a href="#contact" class="nav-cta" (click)="scrollToSection('contact', $event)">{{ 'nav.cta' | translate }}</a>
 
       <button
         type="button"
@@ -56,11 +56,10 @@
 
   @if (mobileMenuOpen()) {
     <div class="mobile-menu">
-      <a href="#about" (click)="closeMobileMenu()">{{ 'nav.about' | translate }}</a>
-      <a href="#features" (click)="closeMobileMenu()">{{ 'nav.features' | translate }}</a>
-      <a href="#flow" (click)="closeMobileMenu()">{{ 'nav.flow' | translate }}</a>
-      <a href="#contact" (click)="closeMobileMenu()">{{ 'nav.contact' | translate }}</a>
-      <a href="#contact" (click)="closeMobileMenu()" class="mobile-cta">{{ 'nav.cta' | translate }}</a>
+      <a href="#about" (click)="navigateToSection('about', $event)">{{ 'nav.about' | translate }}</a>
+      <a href="#features" (click)="navigateToSection('features', $event)">{{ 'nav.features' | translate }}</a>
+      <a href="#flow" (click)="navigateToSection('flow', $event)">{{ 'nav.flow' | translate }}</a>
+      <a href="#contact" (click)="navigateToSection('contact', $event)">{{ 'nav.contact' | translate }}</a>
     </div>
   }
 </header>
@@ -75,8 +74,8 @@
       </h1>
       <p class="lead">{{ 'hero.lead' | translate }}</p>
       <div class="hero-actions">
-        <a href="#contact" class="btn-primary">{{ 'hero.ctaPrimary' | translate }}</a>
-        <a href="#features" class="btn-ghost">{{ 'hero.ctaSecondary' | translate }}</a>
+        <a href="#contact" class="btn-primary" (click)="scrollToSection('contact', $event)">{{ 'hero.ctaPrimary' | translate }}</a>
+        <a href="#features" class="btn-ghost" (click)="scrollToSection('features', $event)">{{ 'hero.ctaSecondary' | translate }}</a>
       </div>
       <div class="hero-stats">
         <div><strong>{{ 'hero.stat1Num' | translate }}</strong><span>{{ 'hero.stat1Label' | translate }}</span></div>
@@ -293,13 +292,13 @@
       <div class="footer-cols">
         <div class="footer-col">
           <h5>{{ 'footer.product' | translate }}</h5>
-          <a href="#about">{{ 'nav.about' | translate }}</a>
-          <a href="#features">{{ 'nav.features' | translate }}</a>
-          <a href="#flow">{{ 'nav.flow' | translate }}</a>
+          <a href="#about" (click)="scrollToSection('about', $event)">{{ 'nav.about' | translate }}</a>
+          <a href="#features" (click)="scrollToSection('features', $event)">{{ 'nav.features' | translate }}</a>
+          <a href="#flow" (click)="scrollToSection('flow', $event)">{{ 'nav.flow' | translate }}</a>
         </div>
         <div class="footer-col">
           <h5>{{ 'footer.company' | translate }}</h5>
-          <a href="#contact">{{ 'footer.contact' | translate }}</a>
+          <a href="#contact" (click)="scrollToSection('contact', $event)">{{ 'footer.contact' | translate }}</a>
         </div>
       </div>
     </div>

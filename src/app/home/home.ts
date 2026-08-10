@@ -1,4 +1,4 @@
-import { Component, inject, signal, OnInit, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { Component, inject, signal, OnInit, OnDestroy, PLATFORM_ID, afterNextRender } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ThemeService } from '../services/theme.service';
 import { I18nService } from '../services/i18n.service';
@@ -57,6 +57,48 @@ export class Home implements OnInit, OnDestroy {
 
   closeMobileMenu(): void {
     this.mobileMenuOpen.set(false);
+  }
+
+  /** Height of the sticky header, used to offset scroll targets so section
+   *  titles don't end up hidden underneath it. Keep in sync with .site-header
+   *  height in home.css. */
+  private readonly headerOffset = 76;
+
+  constructor() {
+    // If we arrived here from another route (e.g. the privacy page) wanting
+    // to land on a specific section, scroll to it once the view has rendered.
+    // Runs client-side only, and never touches the URL/hash.
+    afterNextRender(() => {
+      if (!this.isBrowser) return;
+      const state = history.state as { scrollTo?: string } | null;
+      if (state?.scrollTo) {
+        this.scrollToId(state.scrollTo);
+        // Clear it so a manual refresh or back/forward doesn't re-trigger the scroll.
+        history.replaceState({ ...history.state, scrollTo: undefined }, '');
+      }
+    });
+  }
+
+  private scrollToId(id: string): void {
+    const target = document.getElementById(id);
+    if (!target) return;
+    const targetY = target.getBoundingClientRect().top + window.scrollY - this.headerOffset;
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
+  }
+
+  /** Smooth-scrolls to a section by id without letting the browser write a
+   *  hash into the address bar (unlike a plain <a href="#id">). */
+  scrollToSection(id: string, event: Event): void {
+    event.preventDefault();
+    if (!this.isBrowser) return;
+    this.scrollToId(id);
+  }
+
+  /** Same as scrollToSection, but also closes the mobile menu — for links
+   *  inside the mobile nav drawer. */
+  navigateToSection(id: string, event: Event): void {
+    this.scrollToSection(id, event);
+    this.closeMobileMenu();
   }
 
   ngOnInit(): void {
