@@ -1,9 +1,11 @@
 import { Component, inject, signal, OnInit, OnDestroy, PLATFORM_ID, afterNextRender } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { FormsModule, NgForm } from '@angular/forms';
 import { ThemeService } from '../services/theme.service';
 import { I18nService } from '../services/i18n.service';
 import { TranslatePipe } from '../pipes/translate.pipe';
 import { ScrollRevealDirective } from '../scroll-reveal';
+import { ContactService, ContactPayload } from '../services/contact.service';
 
 type TableStatus = 'available' | 'occupied' | 'reserved' | 'checkout';
 
@@ -19,14 +21,14 @@ interface FlowStepDef {
 
 @Component({
   selector: 'app-root',
-  imports: [TranslatePipe, ScrollRevealDirective],
+  imports: [TranslatePipe, ScrollRevealDirective, FormsModule],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-
 export class Home implements OnInit, OnDestroy {
   theme = inject(ThemeService);
   i18n = inject(I18nService);
+  contactService = inject(ContactService);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   readonly features: FeatureDef[] = [
@@ -50,6 +52,24 @@ export class Home implements OnInit, OnDestroy {
   private reduceMotion = false;
   // Mobile navbar state
   readonly mobileMenuOpen = signal(false);
+
+  // Contact form model, two-way bound via ngModel in home.html.
+  contactModel: ContactPayload = this.emptyContactModel();
+
+  private emptyContactModel(): ContactPayload {
+    return { firstName: '', lastName: '', email: '', phone: '', subject: 'partnership', message: '' };
+  }
+
+  /** Submits the contact form via ContactService (EmailJS under the hood).
+   *  Resets the form back to its default state on success. */
+  async onContactSubmit(form: NgForm): Promise<void> {
+    if (form.invalid || this.contactService.state() === 'sending') return;
+    const ok = await this.contactService.submit(this.contactModel);
+    if (ok) {
+      this.contactModel = this.emptyContactModel();
+      form.resetForm({ subject: 'partnership' });
+    }
+  }
 
   toggleMobileMenu(): void {
     this.mobileMenuOpen.update((v) => !v);
@@ -133,5 +153,5 @@ export class Home implements OnInit, OnDestroy {
       current.map((t, i) => (i === idx ? { ...t, status: next } : t))
     );
   }
-  
+
 }

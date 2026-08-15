@@ -147,7 +147,12 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
 'legal.termsLead': 'The terms that govern your use of Serv.io.',
 'legal.termsBody1': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 'legal.termsBody2': 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-  },
+'contact.formSending': 'Sending…',
+'contact.formSuccess': 'Thanks — your message is on its way. We\u2019ll get back to you shortly.',
+'contact.formError': 'Something went wrong sending your message. Please try again or email us directly.',  
+
+
+},
 
   ar: {
     'nav.about': 'ما هو Serv.io',
@@ -295,5 +300,11 @@ export const TRANSLATIONS: Record<Lang, Record<string, string>> = {
     'legal.termsLead': 'الشروط التي تحكم استخدامك لـ Serv.io.',
     'legal.termsBody1': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     'legal.termsBody2': 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+
+    'contact.formSending': 'جارٍ الإرسال…',
+    'contact.formSuccess': 'شكراً — رسالتك في طريقها إلينا. سنعاود التواصل معك قريباً.',
+    'contact.formError': 'حدث خطأ أثناء إرسال رسالتك. حاول مجدداً أو راسلنا مباشرة.',
+
+
   },
 };

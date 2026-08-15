@@ -221,25 +221,29 @@
         </span>
       </div>
 
-      <form class="contact-form" action="mailto:hello@servio.app" method="post" enctype="text/plain">
+      <form class="contact-form" #contactForm="ngForm" (ngSubmit)="onContactSubmit(contactForm)">
         <div class="form-row">
           <div class="field">
-            <input type="text" name="firstName" id="cf-first" placeholder=" " required />
+            <input type="text" name="firstName" id="cf-first" placeholder=" " required
+                   [(ngModel)]="contactModel.firstName" />
             <label for="cf-first">{{ 'contact.firstName' | translate }}</label>
           </div>
           <div class="field">
-            <input type="text" name="lastName" id="cf-last" placeholder=" " required />
+            <input type="text" name="lastName" id="cf-last" placeholder=" " required
+                   [(ngModel)]="contactModel.lastName" />
             <label for="cf-last">{{ 'contact.lastName' | translate }}</label>
           </div>
         </div>
 
         <div class="form-row">
           <div class="field">
-            <input type="email" name="email" id="cf-email" placeholder=" " required />
+            <input type="email" name="email" id="cf-email" placeholder=" " required email
+                   [(ngModel)]="contactModel.email" />
             <label for="cf-email">{{ 'contact.formEmail' | translate }}</label>
           </div>
           <div class="field">
-            <input type="tel" name="phone" id="cf-phone" placeholder=" " />
+            <input type="tel" name="phone" id="cf-phone" placeholder=" "
+                   [(ngModel)]="contactModel.phone" />
             <label for="cf-phone">{{ 'contact.phoneLabel' | translate }}</label>
           </div>
         </div>
@@ -248,32 +252,40 @@
           <span class="subject-title">{{ 'contact.subjectLabel' | translate }}</span>
           <div class="subject-pills">
             <label class="pill-option">
-              <input type="radio" name="subject" value="partnership" checked />
+              <input type="radio" name="subject" value="partnership" [(ngModel)]="contactModel.subject" />
               <span>{{ 'contact.subjectPartnership' | translate }}</span>
             </label>
             <label class="pill-option">
-              <input type="radio" name="subject" value="business" />
+              <input type="radio" name="subject" value="business" [(ngModel)]="contactModel.subject" />
               <span>{{ 'contact.subjectBusiness' | translate }}</span>
             </label>
             <label class="pill-option">
-              <input type="radio" name="subject" value="userInquiry" />
+              <input type="radio" name="subject" value="userInquiry" [(ngModel)]="contactModel.subject" />
               <span>{{ 'contact.subjectUserInquiry' | translate }}</span>
             </label>
             <label class="pill-option">
-              <input type="radio" name="subject" value="appInquiry" />
+              <input type="radio" name="subject" value="appInquiry" [(ngModel)]="contactModel.subject" />
               <span>{{ 'contact.subjectAppInquiry' | translate }}</span>
             </label>
           </div>
         </div>
 
         <div class="field">
-          <textarea name="message" id="cf-message" rows="3" placeholder=" " required></textarea>
+          <textarea name="message" id="cf-message" rows="3" placeholder=" " required
+                    [(ngModel)]="contactModel.message"></textarea>
           <label for="cf-message">{{ 'contact.formMessage' | translate }}</label>
         </div>
 
+        @if (contactService.state() === 'success') {
+          <p class="form-status form-status-success">{{ 'contact.formSuccess' | translate }}</p>
+        }
+        @if (contactService.state() === 'error') {
+          <p class="form-status form-status-error">{{ 'contact.formError' | translate }}</p>
+        }
+
         <div class="form-submit-row">
-          <button type="submit" class="btn-send">
-            {{ 'contact.formSend' | translate }}
+          <button type="submit" class="btn-send" [disabled]="contactForm.invalid || contactService.state() === 'sending'">
+            {{ (contactService.state() === 'sending' ? 'contact.formSending' : 'contact.formSend') | translate }}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14M13 6l6 6-6 6"/>
             </svg>

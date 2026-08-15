@@ -941,3 +941,20 @@ footer {
   .nav-actions .nav-cta { display: none; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
 }
+.form-status {
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin: 0;
+}
+
+.form-status-success {
+  background: color-mix(in srgb, var(--cyan) 15%, transparent);
+  color: var(--cyan);
+}
+
+.form-status-error {
+  background: color-mix(in srgb, var(--coral) 15%, transparent);
+  color: var(--coral);
+}
