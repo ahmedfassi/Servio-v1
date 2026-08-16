@@ -14,10 +14,10 @@ export interface ContactPayload {
 export type ContactState = 'idle' | 'sending' | 'success' | 'error';
 
 // From your EmailJS dashboard — https://dashboard.emailjs.com
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_NOTIFICATION_TEMPLATE_ID'; // sent to your team inbox
-const EMAILJS_AUTOREPLY_TEMPLATE_ID = 'YOUR_AUTOREPLY_TEMPLATE_ID'; // sent back to the visitor
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID = 'service_8xyoaed';
+const EMAILJS_TEMPLATE_ID = 'template_2g2s1tq';
+const EMAILJS_PUBLIC_KEY = 'wfEVYFzfFKBvN6e94';
+const EMAILJS_AUTOREPLY_TEMPLATE_ID = 'template_ok50iwl'; // sent back to the visitor
 
 // EmailJS throttles requests fired back-to-back from the same public key.
 // Waiting a beat between the two sends avoids the second one getting silently dropped.
